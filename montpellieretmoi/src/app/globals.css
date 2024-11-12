@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.scroll-section {
+  position: relative;
+  height: 100vh; /* Ou la taille que vous souhaitez pour la section */
+}
+
+.motion-path {
+  width: 100%;
+  height: 300px;
+}
+
+.sprite-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.sprite {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+}
+
+body {
+  margin:0;
+  width: 100%;
+  height: 3000px;
+  background:#dfdfdf;
+  overflow-x: hidden;
+}
+
+.character-container {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+}
