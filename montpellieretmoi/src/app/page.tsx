@@ -272,12 +272,27 @@ export default function Home() {
         </h2>
         <div className="grid md:grid-cols-2 bg-white shadow-md rounded-md text-gray-800 p-8 gap-5">
           <img src="how.webp" alt="how" />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error a
-            laudantium iure eaque incidunt tenetur laborum corporis harum
-            ducimus facilis! Tenetur molestiae illum minus deleniti dolore
-            cumque ab excepturi placeat.
-          </p>
+          <div>
+            <h2 className="text-2xl font-bold space-x-4">
+              Rien de plus simple !
+            </h2>
+
+              <p className="tracking-wide leading-7 mt-8 text-lg">
+                Notre application a été conçue pour être la plus simple et
+                intuitive possible. Peu importe votre niveau d&apos;expérience
+                avec les outils numériques, vous pourrez l&apos;utiliser sans
+                difficulté. Disponible sur tous les smartphones, qu&apos;ils
+                soient Android ou iOS, notre application s&apos;adapte à vos
+                besoins et vous accompagne au quotidien.
+              </p>
+              <p className="tracking-wide leading-7 mt-8 text-lg">
+                Pour mieux vous montrer à quel point son utilisation est facile,
+                nous avons préparé une animation qui illustre étape par étape
+                son fonctionnement. Vous allez voir, rien n&apos;a jamais été
+                aussi simple !
+              </p>
+
+          </div>
         </div>
       </section>
       {/* Chemin de personnage avec arrêts de texte */}
@@ -339,8 +354,8 @@ export default function Home() {
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 4</h3>
             <p className="text-gray-600">
-              Rendez-vous dans l&apos;établissements dont vous disposez un qrcode de
-              réduction
+              Rendez-vous dans l&apos;établissements dont vous disposez un
+              qrcode de réduction
             </p>
             <div className="flex justify-center m-8">
               <img src="logo-qr.png" alt="QR Code" className="h-32 w-auto" />
