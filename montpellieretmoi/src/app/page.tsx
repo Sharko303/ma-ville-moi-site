@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
+import Spline from "@splinetool/react-spline";
+import { url } from "inspector";
+import Footer from "@/composant/Footer";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -11,6 +14,32 @@ export default function Home() {
     const frameWidth = 200; // Largeur de chaque frame de l'image
     const totalFrames = 6; // Nombre total de frames dans l'image
 
+    const partnerPanels = gsap.utils.toArray(".partner-logo");
+    console.log(partnerPanels);
+    partnerPanels.forEach((panel, index) => {
+      gsap.fromTo(
+        panel,
+        {
+          x: window.innerWidth, // Commence à droite
+          opacity: 0, // Commence invisible
+        },
+        {
+          x: 0, // Se déplace aux milieux
+          opacity: 1, // Devient visible
+          duration: 10, // Durée de l'animation
+          // Décalage entre les partenaires
+          scrollTrigger: {
+            trigger: panel, // Déclencheur pour chaque panneau
+            start: "top 80%", // Commence à défiler lorsque le logo arrive à 80% de la hauteur de la fenêtre
+            end: "bottom top", // Terminer lorsque le logo est sorti de la fenêtre
+            scrub: true, // L'animation est liée au défilement
+            // on fait l'animation que une fois
+            once: true,
+            delay: index * 1.3, // Décalage entre les animations
+          },
+        }
+      );
+    });
     // Animation du sprite en fonction du scroll (image du personnage qui change)
     gsap.to(".character-sprite", {
       backgroundPositionX: `-${frameWidth * totalFrames}px`,
@@ -22,23 +51,6 @@ export default function Home() {
         scrub: true,
       },
     });
-
-    // Animation du mouvement le long du chemin
-    /*     gsap.to(".character-container", {
-      scrollTrigger: {
-        trigger: ".character-path",
-        start: "top center",
-        end: "bottom center",
-        scrub: 1,
-      },
-      motionPath: {
-        path: ".character-path-svg path", // Assurez-vous que votre SVG est sélectionné correctement
-        align: ".character-path-svg path",
-        alignOrigin: [0.5, 0.5],
-        offsetX: 0, // Ajustez si nécessaire
-        offsetY: 0, // Ajustez si nécessaire
-      },
-    }); */
 
     gsap.to(".character-container", {
       duration: 5,
@@ -74,25 +86,6 @@ export default function Home() {
     });
 
     // Animation de chaque logo au scroll
-    gsap.utils.toArray(".partner-logo").forEach((logo, index) => {
-      gsap.fromTo(
-        logo,
-        { opacity: 0, x: 100 }, // Point de départ (invisible, décalé)
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: logo,
-            start: "top center+=200", // Début de l’animation
-            end: "top center", // Fin de l’animation
-            toggleActions: "play none none reverse",
-            scrub: true,
-            onLeave: () => gsap.to(logo, { opacity: 0 }), // Masque le logo lorsqu’il sort de vue
-          },
-        }
-      );
-    });
 
     // Points de texte le long du chemin
     const textStops = [
@@ -100,6 +93,7 @@ export default function Home() {
       { trigger: ".text-point-2", text: "Explorez nos attractions." },
       { trigger: ".text-point-3", text: "Découvrez la culture locale." },
       { trigger: ".text-point-4", text: "Profitez de réductions exclusives!" },
+      { trigger: ".text-point-5", text: "Profitez de réductions exclusives!" },
     ];
 
     textStops.forEach((stop, index) => {
@@ -118,59 +112,19 @@ export default function Home() {
         }
       );
     });
-    // annimation téléphone
-    const canvas = document.getElementById("iphone-animation");
-    const context = canvas.getContext("2d");
-
-    canvas.width = 200;
-    canvas.height = 200;
-
-    const frameCount = 147;
-/*     const currentFrame = (index) => (
-      `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${(index + 1).toString().padStart(4, '0')}.jpg`
-    ); */
-        const currentFrame = (index) => (
-      `https://www.apple.com/v/iphone-16-pro/a/images/overview/product-viewer/iphone-pro/loader__gfk6vgp90p26_xlarge.jpg`
-    );
-
-    const images = [];
-    const iphone = { frame: 0 };
-
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      images.push(img);
-    }
-
-    gsap.to(iphone, {
-      frame: frameCount - 1,
-      snap: "frame",
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".text-point-3",
-        start: "top center",
-        end: "bottom center",
-        scrub: 0.5,
-      },
-      onUpdate: render,
-    });
-
-    images[0].onload = render;
-
-    function render() {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(images[iphone.frame], 0, 0);
-    }
   }, []);
 
   return (
     <div className="bg-gray-100 font-sans">
       {/* Section Héros */}
-      <section className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern">
+      <section
+        className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern"
+        id="bg-index"
+      >
         <h1 className="hero-heading text-5xl font-bold text-gray-800 mb-4">
           Découvrez Montpellier autrement
         </h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <p className="text-xl text-gray-800 mb-8">
           Explorez les meilleurs établissements et profitez d’avantages
           exclusifs
         </p>
@@ -182,41 +136,154 @@ export default function Home() {
         </a>
       </section>
       {/* Section Fonctionnalités */}
-      <section className="py-20 px-6" id="features">
+      <section className="py-20 px-6 " id="features">
         <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800 ">
           Fonctionnalités
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="feature p-6 bg-white shadow-md rounded-md">
-            <h3 className="text-2xl font-bold mb-2 text-gray-800 ">
-              Jeux Hebdomadaires
-            </h3>
-            <p className="text-gray-600">
-              Gagnez des récompenses en participant à nos jeux.
+          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800">
+            <h3 className="text-2xl font-bold mb-2">Jeux Hebdomadaires</h3>
+            <p className="text-gray-600 mb-4">
+              Gagnez des récompenses en participant à nos jeux hebdomadaires !
+              Chaque semaine, nous vous proposons une nouvelle série de jeux
+              excitants avec des prix à gagner. Que vous soyez compétitif ou que
+              vous cherchiez simplement à passer un bon moment, il y a toujours
+              quelque chose pour vous !
             </p>
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                <strong>Jeux divers :</strong> Des jeux variés chaque semaine,
+                allant des quiz aux défis créatifs, pour tous les goûts.
+              </li>
+              <li>
+                <strong>Récompenses attractives :</strong> Des prix tels que des
+                bons d'achat, des réductions exclusives ou des expériences
+                uniques.
+              </li>
+              <li>
+                <strong>Compétition amicale :</strong> Affrontez d'autres
+                participants dans des challenges et montez dans le classement
+                pour débloquer des récompenses supplémentaires.
+              </li>
+              <li>
+                <strong>Facile à participer :</strong> Inscrivez-vous
+                simplement, participez chaque semaine et suivez votre
+                progression.
+              </li>
+            </ul>
           </div>
-          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
+
+          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800">
             <h3 className="text-2xl font-bold mb-2">Codes Promo Exclusifs</h3>
-            <p className="text-gray-600">
-              Accédez à des réductions dans vos établissements favoris.
+            <p className="text-gray-600 mb-4">
+              Profitez de réductions et d'offres spéciales dans vos
+              établissements favoris grâce à nos codes promo exclusifs. Chaque
+              mois, nous vous offrons des opportunités de faire des économies
+              tout en explorant de nouveaux lieux.
             </p>
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                <strong>Réductions immédiates :</strong> Utilisez des codes
+                promo pour obtenir des réductions instantanées lors de vos
+                achats ou réservations.
+              </li>
+              <li>
+                <strong>Offres limitées :</strong> Profitez de nos offres
+                spéciales qui changent chaque mois. Restez à l'affût !
+              </li>
+              <li>
+                <strong>Partenariats exclusifs :</strong> Bénéficiez de remises
+                dans une sélection d'établissements partenaires locaux.
+              </li>
+            </ul>
           </div>
-          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
+          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800">
             <h3 className="text-2xl font-bold mb-2">Explorer Montpellier</h3>
-            <p className="text-gray-600">
-              Découvrez les meilleurs endroits cachés de la ville.
+            <p className="text-gray-600 mb-4">
+              Découvrez les secrets bien gardés de Montpellier ! Partez à la
+              recherche des lieux cachés, des monuments historiques et des
+              expériences uniques que cette ville a à offrir. Que vous soyez un
+              résident ou un visiteur, il y a toujours quelque chose de nouveau
+              à explorer.
             </p>
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                <strong>Sites historiques :</strong> Explorez les monuments
+                emblématiques de Montpellier, comme la Place de la Comédie et
+                l’Arc de Triomphe.
+              </li>
+              <li>
+                <strong>Endroits secrets :</strong> Découvrez des lieux moins
+                connus mais tout aussi fascinants, comme des jardins cachés ou
+                des cafés pittoresques.
+              </li>
+              <li>
+                <strong>Expériences locales :</strong> Participez à des
+                événements locaux, des visites guidées et des activités
+                culturelles pour plonger au cœur de la ville.
+              </li>
+            </ul>
+          </div>
+        </div>
+        {/* Block nos partenaires avec scroll horizontal */}
+        <div className="relative mt-12" id="partener">
+          <h3 className="text-2xl font-bold mb-4 text-center text-gray-800">
+            Nos Partenaires
+          </h3>
+          <div
+            className="partners-scroll-wrapper overflow-x-scroll flex space-x-6 py-4 justify-center align-middle"
+            id="partners"
+          >
+            {/* Simuler quelques partenaires avec des logos */}
+            <div className="partner-logo bg-white shadow-md rounded-md p-4">
+              <img
+                src="partenaire1.webp"
+                alt="Partenaire 1"
+                className="h-32 w-auto"
+              />
+            </div>
+            <div className="partner-logo bg-white shadow-md rounded-md p-4">
+              <img
+                src="partenaire2.webp"
+                alt="Partenaire 2"
+                className="h-32 w-auto"
+              />
+            </div>
+            <div className="partner-logo bg-white shadow-md rounded-md p-4">
+              <img
+                src="partenaire3.webp"
+                alt="Partenaire 3"
+                className="h-32 w-auto"
+              />
+            </div>
+            <div className="partner-logo bg-white shadow-md rounded-md p-4">
+              <img
+                src="partenaire4.webp"
+                alt="Partenaire 4"
+                className="h-32 w-auto"
+              />
+            </div>
+            {/* Plus de logos ici */}
           </div>
         </div>
       </section>
-      <section>
+      <section className="m-8 p-8">
         <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800 ">
           {" "}
           Mais comment sa fonctionne ?
         </h2>
+        <div className="grid md:grid-cols-2 bg-white shadow-md rounded-md text-gray-800 p-8 gap-5">
+          <img src="how.webp" alt="how" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error a
+            laudantium iure eaque incidunt tenetur laborum corporis harum
+            ducimus facilis! Tenetur molestiae illum minus deleniti dolore
+            cumque ab excepturi placeat.
+          </p>
+        </div>
       </section>
       {/* Chemin de personnage avec arrêts de texte */}
-      <section className="py-20 px-6 relative character-path">
+      <section className="py-20 px-6 relative character-path" id="chemin">
         <div className="character-container absolute">
           <div
             className="character-sprite"
@@ -246,34 +313,53 @@ export default function Home() {
         </svg>
 
         {/* Points de texte le long du chemin */}
-        <div className="absolute text-point-1 top-40 left-20 text-xl font-semibold text-blue-600">
+        <div className="absolute text-point-1 left-[10%] top-[5%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 1</h3>
             <p className="text-gray-600">Télerchargez l'application.</p>
           </div>
         </div>
-        <div className="absolute text-point-2 top-[700px] left-40 text-xl font-semibold text-blue-600">
+        <div className="absolute text-point-2 left-[5%] top-[14%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 2</h3>
             <p className="text-gray-600">Attendez une notification.</p>
           </div>
         </div>
-        <div className="absolute text-point-3 top-[1600px] left-60 text-xl font-semibold text-blue-600">
+        <div className="absolute text-point-3 left-[20%] top-[30%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 3</h3>
             <p className="text-gray-600">
-              Découvrez les meilleurs endroits cachés de la ville.
+              Jouer au jeux grace a votre téléphone.
             </p>
-            <canvas id="iphone-animation" width="1158" height="770" className="mt-4"></canvas>
+            <Spline
+              scene="https://prod.spline.design/CmgToJ93I6e4R6uA/scene.splinecode"
+              className="spline-canvas"
+            />
           </div>
         </div>
-        <div className="absolute text-point-4 top-[2500px] right-80 text-xl font-semibold text-blue-600">
+        <div className="absolute text-point-4 right-[10%] top-[57%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 4</h3>
-            <p className="text-gray-600">Profitez de réductions exclusives!</p>
+            <p className="text-gray-600">
+              Rendez-vous dans l'établissements dont vous disposez un qrcode de
+              réduction
+            </p>
+            <div className="flex justify-center m-8">
+              <img src="logo-qr.png" alt="QR Code" className="h-32 w-auto" />
+            </div>
+          </div>
+        </div>
+        <div className="absolute text-point-5 right-[10%] top-[80%] text-xl font-semibold text-blue-600">
+          <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
+            <h3 className="text-2xl font-bold mb-2">Etape 5</h3>
+            <p className="text-gray-600">Profitez de votre réduction !</p>
+            <div className="flex justify-center mt-5">
+              <img src="hand.jpg" alt="QR Code" className="h-32 w-auto" />
+            </div>
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

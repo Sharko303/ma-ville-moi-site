@@ -13,6 +13,12 @@
     --foreground: #ededed;
   }
 }
+/* Reset css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   color: var(--foreground);
@@ -56,4 +62,34 @@ body {
   position: absolute;
   width: 150px;
   height: 100px;
+}
+
+.spline-canvas {
+  background-color: transparent !important;
+  width: 25vw!important;
+  height: 50vh!important;
+  position: relative;
+}
+
+#bg-index {
+  background-image: url("/bg-map-montpellier-scaled.jpg");
+}
+
+#partners {
+  overflow-x: hidden;  /* Permet le défilement horizontal */
+  overflow-y: hidden; /* Cache la barre de défilement verticale */
+  -ms-overflow-style: none;  /* Pour les anciens navigateurs IE */
+  scrollbar-width: none;  /* Pour Firefox */
+}
+#partners::-webkit-scrollbar {
+  display: none;  /* Cache la barre de défilement */
+}
+
+ #chemin {
+  /* background-image: url("/sol.jpg"); */
+ }
+
+#footer {
+  background-color: #171717;
+  color: white;
 }
