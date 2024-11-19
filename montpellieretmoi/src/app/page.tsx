@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 import Spline from "@splinetool/react-spline";
-import { url } from "inspector";
 import Footer from "@/composant/Footer";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -16,9 +15,9 @@ export default function Home() {
 
     const partnerPanels = gsap.utils.toArray(".partner-logo");
     console.log(partnerPanels);
-    partnerPanels.forEach((panel, index) => {
+    partnerPanels.forEach((panel) => {
       gsap.fromTo(
-        panel,
+        panel as HTMLElement,
         {
           x: window.innerWidth, // Commence à droite
           opacity: 0, // Commence invisible
@@ -29,13 +28,12 @@ export default function Home() {
           duration: 10, // Durée de l'animation
           // Décalage entre les partenaires
           scrollTrigger: {
-            trigger: panel, // Déclencheur pour chaque panneau
+            trigger: panel as undefined, // Déclencheur pour chaque panneau
             start: "top 80%", // Commence à défiler lorsque le logo arrive à 80% de la hauteur de la fenêtre
             end: "bottom top", // Terminer lorsque le logo est sorti de la fenêtre
             scrub: true, // L'animation est liée au défilement
             // on fait l'animation que une fois
             once: true,
-            delay: index * 1.3, // Décalage entre les animations
           },
         }
       );
@@ -96,7 +94,7 @@ export default function Home() {
       { trigger: ".text-point-5", text: "Profitez de réductions exclusives!" },
     ];
 
-    textStops.forEach((stop, index) => {
+    textStops.forEach((stop) => {
       gsap.fromTo(
         stop.trigger,
         { opacity: 0, y: 20 },
@@ -132,7 +130,7 @@ export default function Home() {
           href="#download"
           className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
         >
-          Téléchargez l'application
+          Téléchargez l&apos;application
         </a>
       </section>
       {/* Section Fonctionnalités */}
@@ -157,11 +155,11 @@ export default function Home() {
               </li>
               <li>
                 <strong>Récompenses attractives :</strong> Des prix tels que des
-                bons d'achat, des réductions exclusives ou des expériences
+                bons d&apos;achat, des réductions exclusives ou des expériences
                 uniques.
               </li>
               <li>
-                <strong>Compétition amicale :</strong> Affrontez d'autres
+                <strong>Compétition amicale :</strong> Affrontez d&apos;autres
                 participants dans des challenges et montez dans le classement
                 pour débloquer des récompenses supplémentaires.
               </li>
@@ -176,7 +174,7 @@ export default function Home() {
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800">
             <h3 className="text-2xl font-bold mb-2">Codes Promo Exclusifs</h3>
             <p className="text-gray-600 mb-4">
-              Profitez de réductions et d'offres spéciales dans vos
+              Profitez de réductions et d&apos;offres spéciales dans vos
               établissements favoris grâce à nos codes promo exclusifs. Chaque
               mois, nous vous offrons des opportunités de faire des économies
               tout en explorant de nouveaux lieux.
@@ -189,11 +187,11 @@ export default function Home() {
               </li>
               <li>
                 <strong>Offres limitées :</strong> Profitez de nos offres
-                spéciales qui changent chaque mois. Restez à l'affût !
+                spéciales qui changent chaque mois. Restez à l&apos;affût !
               </li>
               <li>
                 <strong>Partenariats exclusifs :</strong> Bénéficiez de remises
-                dans une sélection d'établissements partenaires locaux.
+                dans une sélection d&apos;établissements partenaires locaux.
               </li>
             </ul>
           </div>
@@ -316,7 +314,7 @@ export default function Home() {
         <div className="absolute text-point-1 left-[10%] top-[5%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 1</h3>
-            <p className="text-gray-600">Télerchargez l'application.</p>
+            <p className="text-gray-600">Télerchargez l&apos;application.</p>
           </div>
         </div>
         <div className="absolute text-point-2 left-[5%] top-[14%] text-xl font-semibold text-blue-600">
@@ -341,7 +339,7 @@ export default function Home() {
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 4</h3>
             <p className="text-gray-600">
-              Rendez-vous dans l'établissements dont vous disposez un qrcode de
+              Rendez-vous dans l&apos;établissements dont vous disposez un qrcode de
               réduction
             </p>
             <div className="flex justify-center m-8">

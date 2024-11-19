@@ -17,7 +17,7 @@ const Footer = () => {
               className="flex items-center space-x-2 hover:text-gray-400"
             >
               <AiFillApple size={24} />
-              <span>Télécharger sur l'App Store</span>
+              <span>Télécharger sur l&apos;App Store</span>
             </a>
             {/* Lien vers le Play Store */}
             <a
