@@ -12,6 +12,19 @@ export default function Home() {
   useEffect(() => {
     const frameWidth = 200; // Largeur de chaque frame de l'image
     const totalFrames = 6; // Nombre total de frames dans l'image
+    let sections = gsap.utils.toArray(".section");
+    // we'll create a ScrollTrigger for each panel just to track when each panel's top hits the top of the viewport (we only need this for snapping)
+    let tops = sections.map(section => ScrollTrigger.create({trigger: section, start: "top top"}));
+    
+    sections.forEach((section, i) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: () => section.offsetHeight < window.innerHeight ? "top top" : "bottom bottom", // if it's shorter than the viewport, we prefer to pin it at the top
+        pin: true, 
+        pinSpacing: false 
+      });
+    });
+    
 
     const partnerPanels = gsap.utils.toArray(".partner-logo");
     console.log(partnerPanels);
@@ -29,11 +42,11 @@ export default function Home() {
           // Décalage entre les partenaires
           scrollTrigger: {
             trigger: panel as undefined, // Déclencheur pour chaque panneau
-            start: "top 80%", // Commence à défiler lorsque le logo arrive à 80% de la hauteur de la fenêtre
-            end: "bottom top", // Terminer lorsque le logo est sorti de la fenêtre
+            start: "top 100%", // Commence à défiler lorsque le logo arrive à 80% de la hauteur de la fenêtre
+            end: "bottom 50%", // Terminer lorsque le logo est au milieux de la fenêtre
             scrub: true, // L'animation est liée au défilement
             // on fait l'animation que une fois
-            once: true,
+            once: false,
           },
         }
       );
@@ -116,7 +129,7 @@ export default function Home() {
     <div className="bg-gray-100 font-sans">
       {/* Section Héros */}
       <section
-        className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern"
+        className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern section"
         id="bg-index"
       >
         <h1 className="hero-heading text-5xl font-bold text-gray-800 mb-4">
@@ -134,7 +147,7 @@ export default function Home() {
         </a>
       </section>
       {/* Section Fonctionnalités */}
-      <section className="py-20 px-6 " id="features">
+      <section className="py-20 px-6 section" id="features">
         <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800 ">
           Fonctionnalités
         </h2>
@@ -265,12 +278,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="m-8 p-8">
-        <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800 ">
+      <section className="m-8 p-8 section help">
+        <h2 className="text-4xl font-semibold text-center mb-12 text-white ">
           {" "}
           Mais comment sa fonctionne ?
         </h2>
-        <div className="grid md:grid-cols-2 bg-white shadow-md rounded-md text-gray-800 p-8 gap-5">
+        <div className="grid md:grid-cols-2 bg-white shadow-md rounded-md text-white> p-8 gap-5 help w-full">
           <img src="how.webp" alt="how" />
           <div>
             <h2 className="text-2xl font-bold space-x-4">
@@ -296,7 +309,7 @@ export default function Home() {
         </div>
       </section>
       {/* Chemin de personnage avec arrêts de texte */}
-      <section className="py-20 px-6 relative character-path" id="chemin">
+      <section className="py-20 px-6 relative character-path bg-white" id="chemin">
         <div className="character-container absolute">
           <div
             className="character-sprite"

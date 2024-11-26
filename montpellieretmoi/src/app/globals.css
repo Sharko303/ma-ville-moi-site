@@ -93,3 +93,14 @@ body {
   background-color: #171717;
   color: white;
 }
+
+.help {
+  background-color: #171717!important;
+  color: white;
+}
+
+.section {
+  height: 100vh;
+  background-color: #ffffff;
+  margin: 0!important;
+}
