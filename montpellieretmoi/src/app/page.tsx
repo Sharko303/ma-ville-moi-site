@@ -41,7 +41,7 @@ export default function Home() {
           scrollTrigger: {
             trigger: panel as undefined, // Déclencheur pour chaque panneau
             start: "top 100%", // Commence à défiler lorsque le logo arrive à 80% de la hauteur de la fenêtre
-            end: "bottom 50%", // Terminer lorsque le logo est au milieux de la fenêtre
+            end: "bottom 60%", // Terminer lorsque le logo est au milieux de la fenêtre
             scrub: true, // L'animation est liée au défilement
             // on fait l'animation que une fois
             once: false,
