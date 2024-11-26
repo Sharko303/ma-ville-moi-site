@@ -12,11 +12,9 @@ export default function Home() {
   useEffect(() => {
     const frameWidth = 200; // Largeur de chaque frame de l'image
     const totalFrames = 6; // Nombre total de frames dans l'image
-    let sections = gsap.utils.toArray(".section");
-    // we'll create a ScrollTrigger for each panel just to track when each panel's top hits the top of the viewport (we only need this for snapping)
-    let tops = sections.map(section => ScrollTrigger.create({trigger: section, start: "top top"}));
-    
-    sections.forEach((section, i) => {
+    const sections = gsap.utils.toArray<HTMLElement>(".section");
+  
+    sections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
         start: () => section.offsetHeight < window.innerHeight ? "top top" : "bottom bottom", // if it's shorter than the viewport, we prefer to pin it at the top
