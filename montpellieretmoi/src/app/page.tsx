@@ -13,16 +13,18 @@ export default function Home() {
     const frameWidth = 200; // Largeur de chaque frame de l'image
     const totalFrames = 6; // Nombre total de frames dans l'image
     const sections = gsap.utils.toArray<HTMLElement>(".section");
-  
+
     sections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
-        start: () => section.offsetHeight < window.innerHeight ? "top top" : "bottom bottom", // if it's shorter than the viewport, we prefer to pin it at the top
-        pin: true, 
-        pinSpacing: false 
+        start: () =>
+          section.offsetHeight < window.innerHeight
+            ? "top top"
+            : "bottom bottom", // if it's shorter than the viewport, we prefer to pin it at the top
+        pin: true,
+        pinSpacing: false,
       });
     });
-    
 
     const partnerPanels = gsap.utils.toArray(".partner-logo");
     console.log(partnerPanels);
@@ -131,11 +133,11 @@ export default function Home() {
         id="bg-index"
       >
         <h1 className="hero-heading text-5xl font-bold text-gray-800 mb-4">
-          Découvrez Montpellier autrement
+          Découvrez Montpellier sous un autre angle.
         </h1>
         <p className="text-xl text-gray-800 mb-8">
-          Explorez les meilleurs établissements et profitez d’avantages
-          exclusifs
+          Explorez les meilleurs établissements et profitez d'avantages
+          exclusifs.
         </p>
         <a
           href="#download"
@@ -279,7 +281,7 @@ export default function Home() {
       <section className="m-8 p-8 section help">
         <h2 className="text-4xl font-semibold text-center mb-12 text-white ">
           {" "}
-          Mais comment sa fonctionne ?
+          Mais comment ça fonctionne ?
         </h2>
         <div className="grid md:grid-cols-2 bg-white shadow-md rounded-md text-white> p-8 gap-5 help w-full">
           <img src="how.webp" alt="how" />
@@ -288,26 +290,28 @@ export default function Home() {
               Rien de plus simple !
             </h2>
 
-              <p className="tracking-wide leading-7 mt-8 text-lg">
-                Notre application a été conçue pour être la plus simple et
-                intuitive possible. Peu importe votre niveau d&apos;expérience
-                avec les outils numériques, vous pourrez l&apos;utiliser sans
-                difficulté. Disponible sur tous les smartphones, qu&apos;ils
-                soient Android ou iOS, notre application s&apos;adapte à vos
-                besoins et vous accompagne au quotidien.
-              </p>
-              <p className="tracking-wide leading-7 mt-8 text-lg">
-                Pour mieux vous montrer à quel point son utilisation est facile,
-                nous avons préparé une animation qui illustre étape par étape
-                son fonctionnement. Vous allez voir, rien n&apos;a jamais été
-                aussi simple !
-              </p>
-
+            <p className="tracking-wide leading-7 mt-8 text-lg">
+              Notre application a été conçue pour être la plus simple et
+              intuitive possible. Peu importe votre niveau d&apos;expérience
+              avec les outils numériques, vous pourrez l&apos;utiliser sans
+              difficulté. Disponible sur tous les smartphones, qu&apos;ils
+              soient Android ou iOS, notre application s&apos;adapte à vos
+              besoins et vous accompagne au quotidien.
+            </p>
+            <p className="tracking-wide leading-7 mt-8 text-lg">
+              Pour mieux vous montrer à quel point son utilisation est facile,
+              nous avons préparé une animation qui illustre étape par étape son
+              fonctionnement. Vous allez voir, rien n&apos;a jamais été aussi
+              simple !
+            </p>
           </div>
         </div>
       </section>
       {/* Chemin de personnage avec arrêts de texte */}
-      <section className="py-20 px-6 relative character-path bg-white" id="chemin">
+      <section
+        className="py-20 px-6 relative character-path bg-white"
+        id="chemin"
+      >
         <div className="character-container absolute">
           <div
             className="character-sprite"
@@ -340,7 +344,7 @@ export default function Home() {
         <div className="absolute text-point-1 left-[10%] top-[5%] text-xl font-semibold text-blue-600">
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 1</h3>
-            <p className="text-gray-600">Télerchargez l&apos;application.</p>
+            <p className="text-gray-600">Téléchargez l&apos;application.</p>
           </div>
         </div>
         <div className="absolute text-point-2 left-[5%] top-[14%] text-xl font-semibold text-blue-600">
@@ -353,7 +357,7 @@ export default function Home() {
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 3</h3>
             <p className="text-gray-600">
-              Jouer au jeux grace a votre téléphone.
+            Jouez au jeu grâce à votre téléphone.
             </p>
             <Spline
               scene="https://prod.spline.design/CmgToJ93I6e4R6uA/scene.splinecode"
@@ -365,7 +369,7 @@ export default function Home() {
           <div className="feature p-6 bg-white shadow-md rounded-md text-gray-800 ">
             <h3 className="text-2xl font-bold mb-2">Etape 4</h3>
             <p className="text-gray-600">
-              Rendez-vous dans l&apos;établissements dont vous disposez un
+              Rendez-vous dans l&apos;établissement dont vous disposez un
               qrcode de réduction
             </p>
             <div className="flex justify-center m-8">
