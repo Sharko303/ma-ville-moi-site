@@ -136,7 +136,7 @@ export default function Home() {
           Découvrez Montpellier sous un autre angle.
         </h1>
         <p className="text-xl text-gray-800 mb-8">
-          Explorez les meilleurs établissements et profitez d'avantages
+          Explorez les meilleurs établissements et profitez d&apos;avantages
           exclusifs.
         </p>
         <a
