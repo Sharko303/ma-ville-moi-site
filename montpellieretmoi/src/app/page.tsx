@@ -132,10 +132,10 @@ export default function Home() {
         className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern section"
         id="bg-index"
       >
-        <h1 className="hero-heading text-5xl font-bold text-gray-800 mb-4">
+        <h1 className="hero-heading text-5xl font-bold text-white mb-4">
           Découvrez Montpellier sous un autre angle.
         </h1>
-        <p className="text-xl text-gray-800 mb-8">
+        <p className="text-xl text-white mb-8">
           Explorez les meilleurs établissements et profitez d&apos;avantages
           exclusifs.
         </p>
