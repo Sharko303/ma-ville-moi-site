@@ -156,7 +156,7 @@ export default function Home() {
               <div>
                 <div className="text-xs">DISPONIBLE SUR</div>
                 <div className="-mt-1 font-sans text-xl font-semibold">
-                  l'App Store
+                  l&apos;App Store
                 </div>
               </div>
             </button>
