@@ -132,15 +132,14 @@ export default function Home() {
         className="h-screen flex flex-col justify-center items-center text-center bg-cover bg-hero-pattern section"
         id="bg-index"
       >
-        <h1 className="hero-heading text-5xl font-bold text-white mb-4 text-shadow-custom">
-          Découvrez Montpellier sous un autre angle.
+        <h1 className="hero-heading text-5xl font-bold text-white mb-4 text-shadow-custom leading-0">
+        Montpellier & Moi,<br></br> l’application qui re-dynamise votre centre-ville
         </h1>
-        <p className="text-xl text-white mb-8 text-shadow-custom">
-          Explorez les meilleurs établissements et profitez d&apos;avantages
-          exclusifs.
-        </p>
+        <h2 className="text-xl text-white mb-8 text-shadow-custom">
+          Joue à des jeux et gagne des bons de réductions.
+        </h2>
         <div className="grid grid-cols-2 gap-4">
-          <a href="https://www.apple.com/fr/app-store/" className="transition">
+          <a href="https://www.apple.com/fr/app-store/" className="transition" target="_blank">
             <button
               type="button"
               className="flex items-center justify-center w-48 mt-3 text-white bg-black h-14 rounded-xl"
@@ -161,7 +160,7 @@ export default function Home() {
               </div>
             </button>
           </a>
-          <a href="https://play.google.com/store/games" className="transition">
+          <a href="https://play.google.com/store/games" className="transition" target="_blank">
             <button
               type="button"
               className="flex items-center justify-center w-48 mt-3 text-white bg-black rounded-lg h-14"
