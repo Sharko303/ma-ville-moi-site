@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Montpellier & Moi",
+  title: "Ma Ville & Moi",
   description: "Montpellier & Moi, l'application de la ville de Montpellier",
 };
 

@@ -133,7 +133,7 @@ export default function Home() {
         id="bg-index"
       >
         <h1 className="hero-heading text-5xl font-bold text-white mb-4 text-shadow-custom leading-0">
-        Montpellier & Moi,<br></br> l’application qui re-dynamise votre centre-ville
+        Ma Ville & Moi,<br></br> l’application qui re-dynamise votre centre-ville
         </h1>
         <h2 className="text-xl text-white mb-8 text-shadow-custom">
           Joue à des jeux et gagne des bons de réductions.
