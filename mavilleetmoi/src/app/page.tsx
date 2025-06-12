@@ -138,6 +138,12 @@ export default function Home() {
         <h2 className="text-xl text-white mb-8 text-shadow-custom">
           Joue à des jeux et gagne des bons de réductions.
         </h2>
+        <button
+              type="button"
+              className="flex items-center justify-center px-3 mt-3 text-white bg-black h-14 rounded-xl font-bold"
+            >
+          Découvre la chasse aux trésors en avant première !
+            </button>
         <div className="grid grid-cols-2 gap-4">
           <a href="https://www.apple.com/fr/app-store/" className="transition" target="_blank">
             <button
